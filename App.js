@@ -24,26 +24,33 @@ function App() {
       break;
     default:dayString = 'Saturday';
   }
+  console.log(dayString);
   const [ plans, setPlans] = useState([]);
   const [ plan, setPlan ] = useState({date: today, title: '', content: ''});
   const onChange = (ev)=> {
+    console.log("In onChange")
     const change = {};
     change[ev.target.name] = ev.target.value;
     setPlan({...setPlan, ...change})
   }
   const onSubmit = (ev)=> {
     ev.preventDefault();
+    console.log("In onSubmit")
     setPlans([...plans, plan]);
   }
   return (
     <div className="App">
       <h1>The Acme Event Site</h1>
-      <h2> Today is:</h2>
-      <form onSubmit={ onSubmit }>
+      <h2> Today is: {dayString}</h2>
+      <form id="today" onSubmit={ onSubmit }>
         <input name='date' value= {today} onChange={onChange}/>
-        <input name='title' value={ plan.title } onChange={onChange}/>
+        <input name='title' value={ plan.title }onChange={onChange}/>
         <input name='content' value={ plan.content } onChange={onChange}/>
-        <button>Save Event</button>
+        <button disabled={!plan.title && !plan.content}>Save Event</button>
+      </form>
+      <form id="future">
+      </form>
+      <form id="past">
       </form>
     </div>
   );
