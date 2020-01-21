@@ -9,7 +9,7 @@ const EventList = ({ plans, changePlans }) => {
         plans.map( (plan, idx) => {
           return (
             <li key={ idx } >
-             {plan.title}
+              <p>{plan.date.toDateString()} {plan.title}</p>
             </li>
           );
         })
