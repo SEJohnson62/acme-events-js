@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import './App.css';
 
 const EventList = ({ plans }) => {
+  console.log("In EventList");
   return (
     <ul>
       {
         plans.map( (plan, idx) => {
           return (
             <li key={ idx }>
-              { plan.date.toDateString() } { plan.title }>
+              { plan.date.toDateString() } { plan.title }
             </li>
           );
         })
@@ -76,10 +77,13 @@ function App() {
   function groupByDate(){
     function compareNumbers( numOne, numTwo ) {
       if( numOne < numTwo ) {
+        console.log(numOne, " is < ", numTwo);
         return -1;
       } else if( numOne > numTwo ){
+        console.log(numOne, " > ", numTwo);
         return 1;
       } else {
+        console.log(numOne, " === ", numTwo);
         return 0;
       }
     }//end function compareNumbers
@@ -92,6 +96,7 @@ function App() {
     console.log(plans);
     plans.sort(groupByDate);
     console.log("after sort by date, plans = ",plans)
+    EventList( {plans} );
   }
 
   return (
